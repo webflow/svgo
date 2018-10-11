@@ -10,7 +10,7 @@ var FS = require('fs'),
 
 describe('indentation', function() {
 
-    it('should create indent with 2 spaces', function(done) {
+    it('should create indent with 2 spaces', function() {
 
         var filepath = PATH.resolve(__dirname, './test.svg'),
             svgo;
@@ -30,11 +30,9 @@ describe('indentation', function() {
                 js2svg  : { pretty: true, indent: 2 }
             });
 
-            svgo.optimize(orig, {path: filepath}).then(function(result) {
-                normalize(result.data).should.be.equal(should);
-                done();
-            });
+            var result = svgo.optimize(orig, {path: filepath});
 
+            normalize(result.data).should.be.equal(should);
         });
 
     });
